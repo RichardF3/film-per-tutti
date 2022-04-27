@@ -1,0 +1,138 @@
+html{
+    font-size: calc(1em + 3vmax);
+}
+
+body {
+    background: #0f2027;
+}
+/*
+h1 {
+    color: darkgoldenrod;
+}
+*/
+:root{
+    --neon-border-color: #f40;
+}
+.brand {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(0, 500px));
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding-top: 40px;
+    
+  }
+
+  .brand::-moz-selection {
+    background-color: var(--neon-border-color);
+  }
+  
+  .brand::selection {
+    background-color: var(--neon-border-color);
+  }
+  
+  .brand:focus {
+    outline: none;
+  }
+
+x-sign {
+    --interval: 1s;
+    display: block;
+    border: 6px solid #f40;
+    border-radius: 4px;
+    padding-left: 25px;
+    text-shadow: 
+      0 0 10px var(--color1),
+      0 0 20px var(--color2),
+      0 0 40px var(--color3),
+      0 0 80px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
+    animation: flicker steps(100) var(--interval) 1s infinite;
+  }
+
+  x-sign:nth-of-type(1) {
+    color: yellow;
+    --color1: yellow;
+    --color2: lime;
+    --color3: green;
+    --color4: darkgreen;
+    font-family: Monoton;
+  }
+
+  @keyframes flicker {
+    50% {
+      color: white;
+      filter: saturate(200%) hue-rotate(20deg);
+
+      box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 2rem var(--neon-border-color),
+      inset 0 0 2rem var(--neon-border-color),
+      0 0 4rem var(--neon-border-color),
+      inset 0 0 4rem var(--neon-border-color);        
+    }
+  }
+
+  hr {
+      border: 1px solid darkgoldenrod;
+  }
+
+.carousel {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    
+    background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    overflow: hidden;
+  }
+
+
+
+  .scope {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: slid 90s linear infinite;
+  }
+  
+  .scope span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--i) * 45deg)) translateZ(250px);
+  }
+  .scope span img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 0.5s;
+  }
+  .scope span:hover img {
+    transform: translateY(-50px) scale(1.7);
+  }
+  @keyframes slid {
+    0% {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(1000px) rotateY(360deg);
+    }
+  }
+  
+  
