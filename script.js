@@ -1,7 +1,7 @@
 // our data
 
 
-const API_URL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=958aa9d1b7454537cda44ce567eb4008&language=en-US&page=1'
+const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=958aa9d1b7454537cda44ce567eb4008&language=en-US&page=1'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 let movies = [];
 
@@ -58,6 +58,7 @@ btn = document.querySelectorAll(".Add-to-wish-list");
 btn.forEach( function(btn){ 
   
   btn.addEventListener("click", (e) => {
+    
       btn.setAttribute("id", "added");
       
       var parent = e.target.parentNode;
@@ -112,17 +113,35 @@ function enableDeleteEvent() {
 
 
 
-
-function myFunction() {
-  var x = document.querySelector(".wishlist");
-  if (x.style.display === "flex") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "flex";
-  }
+function whishList() {
+    var element = document.getElementById("list");
+    element.classList.toggle("list");
+    
+ 
 }
 
+function change() 
+{
+  var elem = document.getElementById("whish-btn")
+    if (elem.innerHTML=="Wish List +") elem.innerHTML = "Close -";
+    else elem.innerHTML = "Wish List +";
+}
 
+const signs = document.querySelectorAll("x-sign");
+const randomIn = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const mixupInterval = (el) => {
+  const ms = randomIn(2000, 4000);
+  el.style.setProperty("--interval", `${ms}ms`);
+};
+
+signs.forEach((el) => {
+  mixupInterval(el);
+  el.addEventListener("webkitAnimationIteration", () => {
+    mixupInterval(el);
+  });
+});
 
 
 function getData (){
