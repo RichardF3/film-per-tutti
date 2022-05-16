@@ -37,6 +37,26 @@ function createCard(IMG_URL,poster_path, title, vote_average, overview) {
       `
 }
 
+function carousell(data){
+  // for (let i = 0; i < 5; i ++) { 
+  //   let carousellItem = document.getElementsByClassName("carousell");
+  //   carousellItem.scr= "${IMG_URL+data[i].poster_path}"
+  // }
+  //   <span class = "carousell" style="--i:1;">
+  // <img src="https://i.postimg.cc/BQcRL38F/pexels-photo-761963.jpg" alt="not found">
+  // </span>
+  for(let i = 0; i < 8; i++){
+   console.log( data[i].poster_path);
+  let cards = document.createElement("span");
+  cards.classList.add('carousell')
+  cards.style=`--i:${i};` // =. this becomes i aka index
+  cards.innerHTML = `<img src = "${IMG_URL+data[i].poster_path}" alt ="${data[i].title}">`
+
+  document.querySelector('.scope').appendChild(cards);
+  }
+}
+
+
 
 function renderMovies(data){
   
@@ -146,14 +166,17 @@ signs.forEach((el) => {
 
 function getData (){
 
-  fetch(API_URL)
-  .then(response =>  response.json())
-  .then(data => {
-    renderMovies(data.results);
-   
-    enableWishListBtn();
-    return data.results
-  })
+    fetch(API_URL)
+    .then(response =>  response.json())
+    .then(data => {
+      renderMovies(data.results);
+      // carousell(data.results);
+      enableWishListBtn();
+      console.log(data.results);
+      carousell(data.results)
+      return data.results
+      
+    })
 
 }
 
